@@ -20,8 +20,6 @@
             <ul class="nav navbar-nav">
 
                 <?php
-
-
                 $query = "SELECT * FROM categories";
                 $select_all_categories_query = mysqli_query($connection, $query);
 
@@ -30,11 +28,7 @@
 
                     echo "<li><a href='#'>{$cat_title}</a></li>";
                 }
-
-
                 ?>
-
-
                 <li>
                     <a href="admin">Admin</a>
                 </li>
