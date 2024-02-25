@@ -40,6 +40,7 @@
             echo "<td><img width='100' src='../images/$post_image' alt='img'></td>";
             echo "<td>$post_tags</td>";
             echo "<td> $post_comment_count</td>";
+            echo "<td><a href='post.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
             echo "<td><a href='post.php?delete={$post_id}'>Delete</a></td>";
 
 

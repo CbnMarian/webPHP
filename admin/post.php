@@ -36,13 +36,15 @@
                                 include 'includes/add_post.php';
                                 break;
 
-                            case '3324';
-                                echo "NICE 3324";
+                            case 'edit_post';
+                                include './edit_post.php';
                                 break;
 
                             case '33214';
                                 echo "NICE 33214";
                                 break;
+
+
                             default:
                                 include 'includes/view_all_posts.php';
                                 break;

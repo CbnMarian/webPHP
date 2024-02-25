@@ -12,7 +12,7 @@
             $select_categories_id = mysqli_query($connection, $query);
 
             // Check if data is fetched
-            if ($row = mysqli_fetch_assoc($select_categories_id)) {
+            while ($row = mysqli_fetch_assoc($select_categories_id)) {
                 $cat_id = $row['cat_id'];
                 $cat_title = $row['cat_title'];
         ?>
