@@ -4,7 +4,7 @@ if (isset($_POST['create_post'])) {
 
     $post_title = $_POST['title'];
     $post_author = $_POST['author'];
-    $post_category_id = $_POST['post_category_id'];
+    $post_category_id = $_POST['post_category'];
     $post_status = $_POST['post_status'];
 
     $post_image = $_FILES['image']['name'];
@@ -17,8 +17,9 @@ if (isset($_POST['create_post'])) {
 
     move_uploaded_file($post_image_temp, "../images/$post_image");
 
-    $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status)";
-    $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_comment_count}','{$post_status}')";
+    $query = "INSERT INTO posts (post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status) ";
+    $query .= "VALUES ('$post_category_id', '$post_title', '$post_author', now(), '$post_image', '$post_content', '$post_tags', '$post_comment_count', '$post_status')";
+
 
     $create_post_query = mysqli_query($connection, $query);
 
@@ -40,8 +41,23 @@ if (isset($_POST['create_post'])) {
 
     <div class="form-group">
 
-        <label for="post_category">Post Category ID</label>
-        <input type="text" class="form-control" name="post_category_id">
+        <select name="post_category" id="post_category">
+            <?php
+            $query = "SELECT * FROM categories";
+            $select_categories = mysqli_query($connection, $query);
+
+            confirm($select_categories);
+
+
+            while ($row = mysqli_fetch_assoc($select_categories)) {
+                $cat_id = $row['cat_id'];
+                $cat_title = $row['cat_title'];
+
+                echo "<option value='{$cat_id}'>{$cat_title}</option>";
+            }
+
+            ?>
+        </select>
 
     </div>
 
@@ -67,7 +83,8 @@ if (isset($_POST['create_post'])) {
 
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea name="post_content" id="" cols="30" rows="10" class="form-control"></textarea>
+        <textarea class="form-control " name="post_content" id="" cols="30" rows="10">
+         </textarea>
     </div>
 
     <div class="form-group">
