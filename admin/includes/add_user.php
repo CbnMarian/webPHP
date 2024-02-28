@@ -1,23 +1,20 @@
 <?php
 
-if (isset($_POST['create_post'])) {
+if (isset($_POST['create_user'])) {
 
-    $post_title = $_POST['title'];
-    $post_author = $_POST['author'];
-    $post_category_id = $_POST['post_category'];
-    $post_status = $_POST['post_status'];
+    echo $user_firstname = $_POST['user_firstname'];
+    $user_lastname = $_POST['user_lastname'];
+    $user_role = $_POST['user_role'];
 
-    $post_image = $_FILES['image']['name'];
-    $post_image_temp = $_FILES['image']['tmp_name'];
+    $username = $_POST['username'];
+    $user_email = $_POST['user_email'];
+    $user_password = $_POST['user_password'];
 
-    $post_tags = $_POST['post_tags'];
-    $post_content = $_POST['post_content'];
-    $post_date = date('d-m-y');
 
-    move_uploaded_file($post_image_temp, "../images/$post_image");
+    // move_uploaded_file($post_image_temp, "../images/$post_image");
 
-    $query = "INSERT INTO posts (post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) ";
-    $query .= "VALUES ('$post_category_id', '$post_title', '$post_author', now(), '$post_image', '$post_content', '$post_tags',  '$post_status')";
+    $query = "INSERT INTO users (user_id, user_firstname, user_lastname, username, user_email, user_role, user_password, ) ";
+    $query .= "VALUES ('$post_category_id', '$user_firstname', '$user_lastname', '$username', '$user_email', '$user_role', '$user_password')";
 
 
     $create_post_query = mysqli_query($connection, $query);
