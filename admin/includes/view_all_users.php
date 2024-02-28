@@ -20,14 +20,14 @@
         $select_users = mysqli_query($connection, $query);
 
         while ($row = mysqli_fetch_assoc($select_users)) {
-            $user_id = $row['user_id'];
-            $username = $row['username'];
-            $user_password = $row['user_password'];
-            $user_firstname = $row['user_firstname'];
-            $user_lastname = $row['user_lastname'];
-            $user_email = $row['user_email'];
-            $user_image = $row['user_image'];
-            $user_role = $row['user_role'];
+            $user_id             = $row['user_id'];
+            $username            = $row['username'];
+            $user_password       = $row['user_password'];
+            $user_firstname      = $row['user_firstname'];
+            $user_lastname       = $row['user_lastname'];
+            $user_email          = $row['user_email'];
+            $user_image          = $row['user_image'];
+            $user_role           = $row['user_role'];
 
 
 
@@ -70,11 +70,10 @@
  */
 
 
-            echo "<td><a href='comments.php?approve=  ' > Approve</a></td>";
-            echo "<td><a href='comments.php?unapprove= '>Unapprove</a></td>";
-            echo "<td><a href='comments.php?delete= '>Delete</a></td>";
-
-
+            echo "<td><a href='users.php?change_to_admin={$user_id}'>Admin</a></td>";
+            echo "<td><a href='users.php?change_to_sub={$user_id}'>Subscriber</a></td>";
+            echo "<td><a href='users.php?source=edit_user&edit_user={$user_id}'>Edit</a></td>";
+            echo "<td><a href='users.php?delete={$user_id}'>Delete</a></td>";
             echo "</tr>";
         }
 
