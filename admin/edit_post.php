@@ -36,6 +36,8 @@ if (isset($_POST['update_post'])) {
     $post_tags = $_POST['post_tags'];
 
     move_uploaded_file($post_image_temp, "../images/$post_image");
+
+
     if (empty($post_image)) {
         $query = "SELECT * FROM posts WHERE post_id = $the_post_id";
         $select_image = mysqli_query($connection, $query);
@@ -55,6 +57,9 @@ if (isset($_POST['update_post'])) {
     $query .= "post_content = '{$post_content}', ";
     $query .= "post_image = '{$post_image}' ";
     $query .= "WHERE post_id = {$the_post_id} ";
+
+
+
 
     $update_post = mysqli_query($connection, $query);
     confirm($update_post);

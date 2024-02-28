@@ -33,13 +33,20 @@ if (isset($_POST['edit_user'])) {
 
     // move_uploaded_file($post_image_temp, "../images/$post_image");
 
-    $query = "INSERT INTO users (user_firstname, user_lastname, username, user_email, user_role, user_password) ";
-    $query .= "VALUES ('$user_firstname', '$user_lastname', '$username', '$user_email', '$user_role', '$user_password')";
 
 
-    $create_post_query = mysqli_query($connection, $query);
+    $query = "UPDATE users SET ";
+    $query .= "user_firstname = '{$user_firstname}', ";
+    $query .= "user_lastname = '{$user_lastname}', ";
+    $query .= "user_role = '{$user_role}', ";
+    $query .= "username = '{$username}', ";
+    $query .= "user_email = '{$user_email}', ";
+    $query .= "user_password = '{$user_password}' ";
+    $query .= "WHERE user_id = {$the_user_id} ";
 
-    confirm($create_post_query);
+    $edit_user_query = mysqli_query($connection, $query);
+
+    confirm($edit_user_query);
 }
 
 
@@ -77,18 +84,8 @@ if (isset($_POST['edit_user'])) {
             } else {
                 echo  "<option value='admin'>admin</option> ";
             }
-
-
             ?>
-
-
-
-
         </select>
-
-
-
-
     </div>
 
 
