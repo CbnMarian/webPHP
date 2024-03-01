@@ -2,6 +2,14 @@
 <?php include  "../includes/db.php" ?>
 <?php include  "./functions.php" ?>
 
+<?php session_start(); ?>
+
+<?php
+if (!isset($_SESSION['user_role'])) {
+    header("Location: ../index.php ");
+}
+
+?>
 
 
 <!DOCTYPE html>
