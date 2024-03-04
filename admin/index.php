@@ -167,10 +167,12 @@
                 $unapproved_comments_query = mysqli_query($connection, $query);
                 $unapproved_comments_count  = mysqli_num_rows($unapproved_comments_query);
 
-                $query = "SELECT * FROM users WHERE user_role = 'subscribers'";
+                $query = "SELECT * FROM users WHERE user_role = 'subscriber'";
                 $select_all_subscribers = mysqli_query($connection, $query);
                 $subscriber_count  = mysqli_num_rows($select_all_subscribers);
-
+                if (!$select_all_subscribers) {
+                    die("Query failed: " . mysqli_error($connection));
+                }
 
 
                 ?>

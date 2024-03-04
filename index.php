@@ -34,8 +34,6 @@
                     $post_status = $row['post_status'];
 
                     if ($post_status !== 'published') {
-                        echo "<h1 class='test-center'>No Posts here</h1>";
-                    } else {
 
 
                 ?>
@@ -64,7 +62,8 @@
 
                         <hr>
                 <?php }
-                } ?>
+                }
+                ?>
 
 
 
