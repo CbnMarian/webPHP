@@ -34,12 +34,23 @@
                 </li>
 
 
-                <!--   <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li> -->
+                <?php
+
+                if ($_SESSION['user_role']) {
+
+                    if (isset($_GET['p_id'])) {
+
+                        $the_post_id = $_GET['p_id'];
+
+                        echo "<li><a href='admin/post.php?source=edit_post&p_id={$the_post_id}'>Edit-this-Article</a></li>";
+                    }
+                }
+
+
+                ?>
+
+
+
 
 
             </ul>
