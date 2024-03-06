@@ -31,8 +31,9 @@ if (isset($_POST['edit_user'])) {
     $user_password   = $_POST['user_password'];
 
 
-    // move_uploaded_file($post_image_temp, "../images/$post_image");
+    $salt = '$2y$10$' . substr(md5(uniqid(rand(), true)), 0, 22);
 
+    $hashed_password = crypt($user_password, $salt);
 
 
     $query = "UPDATE users SET ";
@@ -41,12 +42,14 @@ if (isset($_POST['edit_user'])) {
     $query .= "user_role = '{$user_role}', ";
     $query .= "username = '{$username}', ";
     $query .= "user_email = '{$user_email}', ";
-    $query .= "user_password = '{$user_password}' ";
+    $query .= "user_password = '{$hashed_password}' ";
     $query .= "WHERE user_id = {$the_user_id} ";
 
     $edit_user_query = mysqli_query($connection, $query);
 
     confirm($edit_user_query);
+    header("Location: users.php");
+    exit;
 }
 
 
@@ -76,7 +79,7 @@ if (isset($_POST['edit_user'])) {
     <div class="form-group">
 
         <select name="user_role" id="">
-            <option value="subscriber"><?php echo $user_role; ?></option>
+            <option value="<?php echo $user_role; ?>"><?php echo $user_role; ?></option>
             <?php
 
             if ($user_role == 'admin') {

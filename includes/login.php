@@ -10,7 +10,6 @@ if (isset($_POST['login'])) {
 $username =  mysqli_real_escape_string($connection, $username);
 
 
-
 $query = "SELECT * FROM users WHERE username = '{$username}'";
 $select_user_query = mysqli_query($connection, $query);
 
