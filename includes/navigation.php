@@ -29,14 +29,19 @@
                     echo "<li><a href='#'>{$cat_title}</a></li>";
                 }
                 ?>
+
+
                 <li>
                     <a href="admin">Admin</a>
+                </li>
+                <li>
+                    <a href="registration.php">Registration</a>
                 </li>
 
 
                 <?php
 
-                if ($_SESSION['user_role']) {
+                if (isset($_SESSION['user_role']) && $_SESSION['user_role']) {
 
                     if (isset($_GET['p_id'])) {
 
@@ -44,6 +49,8 @@
 
                         echo "<li><a href='admin/post.php?source=edit_post&p_id={$the_post_id}'>Edit-this-Article</a></li>";
                     }
+                } else {
+                    $blank = " ";
                 }
 
 
