@@ -1,69 +1,65 @@
 <?php include 'includes/admin_header.php' ?>
 
 
+<div id="wrapper">
+
+    <!-- navigation -->
+    <?php include 'includes/admin_navigation.php' ?>
+    <div id="page-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Blank Page
+                        <small>Author</small>
+                    </h1>
 
 
-<body>
+                    <?php
 
-    <div id="wrapper">
+                    if (isset($_GET['source'])) {
+                        $source = $_GET['source'];
+                    } else {
+                        $source = '';
+                    }
 
-        <!-- navigation -->
-        <?php include 'includes/admin_navigation.php' ?>
-        <div id="page-wrapper">
+                    switch ($source) {
 
-            <div class="container-fluid">
+                        case 'add_post';
+                            include 'includes/add_post.php';
+                            break;
 
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Blank Page
-                            <small>Author</small>
-                        </h1>
+                        case 'edit_post';
+                            include './edit_post.php';
+                            break;
 
-
-                        <?php
-
-                        if (isset($_GET['source'])) {
-                            $source = $_GET['source'];
-                        } else {
-                            $source = '';
-                        }
-
-                        switch ($source) {
-
-                            case 'add_post';
-                                include 'includes/add_post.php';
-                                break;
-
-                            case 'edit_post';
-                                include './edit_post.php';
-                                break;
-
-                            case '33214';
-                                echo "NICE 33214";
-                                break;
+                        case '33214';
+                            echo "NICE 33214";
+                            break;
 
 
-                            default:
-                                include 'includes/view_all_posts.php';
-                                break;
-                        }
+                        default:
+                            include 'includes/view_all_posts.php';
+                            break;
+                    }
 
 
 
 
 
-                        ?>
+                    ?>
 
-                    </div>
                 </div>
-                <!-- /.row -->
-
             </div>
-            <!-- /.container-fluid -->
+            <!-- /.row -->
 
         </div>
-        <!-- /#page-wrapper -->
+        <!-- /.container-fluid -->
 
-        <?php include 'includes/admin_footer.php' ?>
+    </div>
+    <!-- /#page-wrapper -->
+
+    <?php include 'includes/admin_footer.php' ?>

@@ -8,27 +8,44 @@ if (isset($_POST['checkBoxArray'])) {
 
         switch ($bulk_options) {
             case 'published':
-                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = {$postValueId}";
-
-                $update_to_published_status = mysqli_query($connection, $query);
-
-                confirm($update_to_published_status);
-                break;
-
             case 'draft':
                 $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = {$postValueId}";
-
-                $update_to_draft_status = mysqli_query($connection, $query);
-
-                confirm($update_to_draft_status);
+                $update_status_query = mysqli_query($connection, $query);
+                confirm($update_status_query);
                 break;
+
 
             case 'delete':
                 $query = "DELETE FROM posts WHERE post_id = {$postValueId}";
-
                 $update_to_delete_status = mysqli_query($connection, $query);
-
                 confirm($update_to_delete_status);
+                break;
+
+
+
+            case 'clone':
+                $query = "SELECT * FROM posts WHERE post_id = '{$postValueId}'";
+                $select_post_query = mysqli_query($connection, $query);
+
+                while ($row = mysqli_fetch_assoc($select_post_query)) {
+                    $post_title = $row['post_title'];
+                    $post_category_id = $row['post_category_id'];
+                    $post_date = $row['post_date'];
+                    $post_author = $row['post_author'];
+                    $post_status = $row['post_status'];
+                    $post_image = $row['post_image'];
+                    $post_tags = $row['post_tags'];
+                    $post_content = $row['post_content'];
+                }
+
+                $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_status, post_image, post_tags, post_content) ";
+                $query .= "VALUES('{$post_category_id}', '{$post_title}', '{$post_author}', '{$post_date}', '{$post_status}', '{$post_image}', '{$post_tags}', '{$post_content}')";
+
+                $insert_post_query = mysqli_query($connection, $query);
+
+                if (!$insert_post_query) {
+                    die("Failed to clone post: " . mysqli_error($connection));
+                }
                 break;
         }
     }
@@ -46,7 +63,8 @@ if (isset($_POST['checkBoxArray'])) {
                 <option value="">Select Options</option>
                 <option value="published">Publish</option>
                 <option value="draft">Draft</option>
-                <option value="delete">Deletet</option>
+                <option value="delete">Delete</option>
+                <option value="clone">Clone</option>
             </select>
         </div>
         <dic class="col-xs-4">
@@ -76,7 +94,7 @@ if (isset($_POST['checkBoxArray'])) {
             <?php
 
             global $connection;
-            $query = "SELECT * FROM posts";
+            $query = "SELECT * FROM posts ORDER BY post_id DESC";
             $select_posts = mysqli_query($connection, $query);
 
             while ($row = mysqli_fetch_assoc($select_posts)) {
@@ -118,9 +136,6 @@ if (isset($_POST['checkBoxArray'])) {
                 }
 
 
-
-
-
                 echo "<td>$post_status</td>";
                 echo "<td><img width='100' src='../images/$post_image' alt='img'></td>";
                 echo "<td>$post_tags</td>";
@@ -133,8 +148,6 @@ if (isset($_POST['checkBoxArray'])) {
             }
 
             ?>
-
-
 
 
         </tbody>

@@ -3,59 +3,57 @@
 
 
 
-<body>
+<div id="wrapper">
 
-    <div id="wrapper">
+    <!-- navigation -->
+    <?php include 'includes/admin_navigation.php' ?>
+    <div id="page-wrapper">
 
-        <!-- navigation -->
-        <?php include 'includes/admin_navigation.php' ?>
-        <div id="page-wrapper">
+        <div class="container-fluid">
 
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Blank Page
-                            <small>Author</small>
-                        </h1>
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Blank Page
+                        <small>Author</small>
+                    </h1>
 
 
-                        <?php
+                    <?php
 
-                        if (isset($_GET['source'])) {
+                    if (isset($_GET['source'])) {
 
-                            $source = $_GET['source'];
-                        } else {
+                        $source = $_GET['source'];
+                    } else {
 
-                            $source = '';
-                        }
+                        $source = '';
+                    }
 
-                        switch ($source) {
+                    switch ($source) {
 
-                            case 'add_user';
+                        case 'add_user';
 
-                                include "includes/add_user.php";
+                            include "includes/add_user.php";
 
-                                break;
+                            break;
 
 
-                            case 'edit_user';
+                        case 'edit_user';
 
-                                include "includes/edit_user.php";
-                                break;
+                            include "includes/edit_user.php";
+                            break;
 
-                            case '200';
-                                echo "NICE 200";
-                                break;
+                        case '200';
+                            echo "NICE 200";
+                            break;
 
-                            default:
+                        default:
 
-                                include "includes/view_all_users.php";
+                            include "includes/view_all_users.php";
 
-                                break;
-                        }
+                            break;
+                    }
 
 
 
@@ -64,16 +62,16 @@
 
 
 
-                        ?>
+                    ?>
 
-                    </div>
                 </div>
-                <!-- /.row -->
-
             </div>
-            <!-- /.container-fluid -->
+            <!-- /.row -->
 
         </div>
-        <!-- /#page-wrapper -->
+        <!-- /.container-fluid -->
 
-        <?php include 'includes/admin_footer.php' ?>
+    </div>
+    <!-- /#page-wrapper -->
+
+    <?php include 'includes/admin_footer.php' ?>
