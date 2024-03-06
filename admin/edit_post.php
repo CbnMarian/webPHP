@@ -74,8 +74,7 @@ if (isset($_POST['update_post'])) {
     <a href='post.php'>
     View Other Posts
     </a> 
-
-    
+ 
    </p>";
 }
 
