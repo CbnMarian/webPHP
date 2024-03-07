@@ -22,8 +22,8 @@ $(document).ready(function () {
   $("body").prepend(div_box);
 
   $("#load-screen")
-    .delay(700)
-    .fadeOut(600, function () {
+    .delay(400)
+    .fadeOut(300, function () {
       $(this).remove();
     });
 });
