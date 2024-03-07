@@ -1,3 +1,4 @@
+<?php include "./admin/functions.php"; ?>
 <?php include "./includes/db.php" ?>
 <?php include "./includes/header.php" ?>
 
@@ -76,6 +77,10 @@
 
 
             <?php
+
+
+
+
             if (isset($_POST['create_comment'])) {
 
                 $the_post_id = $_GET['p_id'];
@@ -102,7 +107,12 @@
                 } else {
                     echo "<script>alert('Fields cannot be empty')</script>";
                 }
+                redirect(location: "./post.php?p_id=$the_post_id");
             }
+
+
+
+
             ?>
 
             <!-- Comments Form -->
