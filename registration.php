@@ -16,13 +16,10 @@ if (isset($_POST['submit'])) {
         $email    = mysqli_real_escape_string($connection, $email);
         $password = mysqli_real_escape_string($connection, $password);
 
-        $salt = '$2y$10$' . substr(md5(uniqid(rand(), true)), 0, 22);
-
-        $hashed_password = crypt($password, $salt);
-
+        $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
 
         $query = "INSERT INTO users (username, user_email, user_password, user_role) ";
-        $query .= "VALUES('{$username}','{$email}','{$hashed_password}', 'subscriber' )";
+        $query .= "VALUES('{$username}','{$email}','{$password}', 'subscriber' )";
         $register_user_query = mysqli_query($connection, $query);
         if (!$register_user_query) {
             die("failed" . mysqli_error($connection) . " " . mysqli_errno($connection));
