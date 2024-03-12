@@ -127,7 +127,7 @@ if (isset($_POST['update_post'])) {
                 $user_id = $row['user_id'];
                 $username = $row['username'];
 
-                echo "<option value='{$username}'>{$username}</option>";
+                echo "<option value='{$post_user}'>{$post_user}</option>";
             }
 
             ?>

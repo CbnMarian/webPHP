@@ -103,6 +103,11 @@ if (isset($_POST['create_post'])) {
         </select>
 
     </div>
+
+
+
+
+
     <div class="form-group">
 
         <select name="post_status" id="">
