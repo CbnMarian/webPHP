@@ -9,18 +9,17 @@ $query = "SELECT * FROM posts";
 $select_posts_by_id = mysqli_query($connection, $query);
 
 while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
-    $post_id = $row['post_id'];
-    $post_user = $row['post_user'];
-    $post_title = $row['post_title'];
-    $post_category_id = $row['post_category_id'];
-    $post_status = $row['post_status'];
-    $post_image = $row['post_image'];
-    $post_content = $row['post_content'];
-    $post_tags = $row['post_tags'];
+    $post_id            = $row['post_id'];
+    $post_user          = $row['post_user'];
+    $post_title         = $row['post_title'];
+    $post_category_id   = $row['post_category_id'];
+    $post_status        = $row['post_status'];
+    $post_image         = $row['post_image'];
+    $post_content       = $row['post_content'];
+    $post_tags          = $row['post_tags'];
     $post_comment_count = $row['post_comment_count'];
-    $post_date = $row['post_date'];
+    $post_date          = $row['post_date'];
 }
-
 
 if (isset($_POST['update_post'])) {
 
@@ -85,16 +84,16 @@ if (isset($_POST['update_post'])) {
 
     <div class="form-group">
         <label for="title">Post Title</label>
-        <input value="<?php echo $post_title; ?>" type=" text" class="form-control" name="title">
+        <input value="<?php echo htmlspecialchars(stripslashes($post_title)); ?>" type="text" class="form-control" name="post_title">
     </div>
 
     <div class="form-group">
-        <label for="users">Categories</label>
-        <select name="post_category" id="post_category">
-
+        <label for="categories">Categories</label>
+        <select name="post_category" id="">
 
             <?php
-            $query = "SELECT * FROM categories";
+
+            $query = "SELECT * FROM categories ";
             $select_categories = mysqli_query($connection, $query);
 
             confirm($select_categories);
@@ -105,10 +104,12 @@ if (isset($_POST['update_post'])) {
                 $cat_title = $row['cat_title'];
 
 
-
                 if ($cat_id == $post_category_id) {
+
+
                     echo "<option selected value='{$cat_id}'>{$cat_title}</option>";
                 } else {
+
                     echo "<option value='{$cat_id}'>{$cat_title}</option>";
                 }
             }
@@ -118,25 +119,22 @@ if (isset($_POST['update_post'])) {
 
     </div>
 
-
     <div class="form-group">
         <label for="users">Users</label>
 
-        <select name="post_users" id="post_users">
+        <select name="post_user" id="post_users">
             <?php
             $users_query = "SELECT * FROM users";
             $select_users = mysqli_query($connection, $users_query);
 
             confirm($select_users);
 
-
             while ($row = mysqli_fetch_assoc($select_users)) {
                 $user_id = $row['user_id'];
                 $username = $row['username'];
 
-                echo "<option value='{$post_user}'>{$post_user}</option>";
+                echo "<option value='{$username}'>{$username}</option>";
             }
-
             ?>
         </select>
 

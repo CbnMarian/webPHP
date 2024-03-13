@@ -29,19 +29,23 @@ if (isset($_POST['checkBoxArray'])) {
                 $select_post_query = mysqli_query($connection, $query);
 
                 while ($row = mysqli_fetch_assoc($select_post_query)) {
-                    $post_title = $row['post_title'];
+                    $post_title       = $row['post_title'];
                     $post_category_id = $row['post_category_id'];
-                    $post_date = $row['post_date'];
-                    $post_author = $row['post_author'];
-                    $post_user = $row['post_user'];
-                    $post_status = $row['post_status'];
-                    $post_image = $row['post_image'];
-                    $post_tags = $row['post_tags'];
-                    $post_content = $row['post_content'];
+                    $post_date        = $row['post_date'];
+                    $post_author      = $row['post_author'];
+                    $post_user        = $row['post_user'];
+                    $post_status      = $row['post_status'];
+                    $post_image       = $row['post_image'];
+                    $post_tags        = $row['post_tags'];
+                    $post_content     = $row['post_content'];
+
+                    if (empty($post_status)) {
+                        $post_status = "No status";
+                    }
                 }
 
-                $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_status, post_image, post_tags, post_content) ";
-                $query .= "VALUES('{$post_category_id}', '{$post_title}', '{$post_author}', '{$post_date}', '{$post_status}', '{$post_image}', '{$post_tags}', '{$post_content}')";
+                $query = "INSERT INTO posts(post_category_id, post_title, post_author,post_user, post_date, post_status, post_image, post_tags, post_content) ";
+                $query .= "VALUES('{$post_category_id}', '{$post_title}', '{$post_author}','{$post_user}',  '{$post_date}', '{$post_status}', '{$post_image}', '{$post_tags}', '{$post_content}')";
 
                 $insert_post_query = mysqli_query($connection, $query);
 
