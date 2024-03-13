@@ -91,6 +91,8 @@ if (isset($_POST['update_post'])) {
     <div class="form-group">
         <label for="users">Categories</label>
         <select name="post_category" id="post_category">
+
+
             <?php
             $query = "SELECT * FROM categories";
             $select_categories = mysqli_query($connection, $query);
@@ -102,7 +104,13 @@ if (isset($_POST['update_post'])) {
                 $cat_id = $row['cat_id'];
                 $cat_title = $row['cat_title'];
 
-                echo "<option value='{$cat_id}'>{$cat_title}</option>";
+
+
+                if ($cat_id == $post_category_id) {
+                    echo "<option selected value='{$cat_id}'>{$cat_title}</option>";
+                } else {
+                    echo "<option value='{$cat_id}'>{$cat_title}</option>";
+                }
             }
 
             ?>
@@ -169,7 +177,8 @@ if (isset($_POST['update_post'])) {
 
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea name=" post_content" id="summernote" cols="30" rows="10" class="form-control"> <?php echo $post_content; ?></textarea>
+        <textarea name="post_content" id="summernote" cols="30" rows="10" class="form-control">
+            <?php echo str_replace('\r\n', '</br>', $post_content); ?></textarea>
     </div>
 
     <div class="form-group">

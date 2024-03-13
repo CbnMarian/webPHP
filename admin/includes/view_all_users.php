@@ -90,33 +90,22 @@ if (isset($_GET['change_to_sub'])) {
     header("Location: users.php");
 }
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-// Debugging statements
-var_dump($_SESSION['user_role']); // Check user role
-var_dump($_GET['delete']); // Check delete parameter
 
 if (isset($_GET['delete'])) {
-    if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') {
-        // Check database connection
-        global $connection;
-        if (!$connection) {
-            die("Database connection failed: " . mysqli_connect_error());
-        }
 
-        $the_user_id = mysqli_real_escape_string($connection, $_GET['delete']);
-        $query = "DELETE FROM users WHERE user_id = {$the_user_id}";
-        $delete_user_query = mysqli_query($connection, $query);
-        if (!$delete_user_query) {
-            die("Error deleting user: " . mysqli_error($connection));
+    if (isset($_SESSION['user_role'])) {
+        if ($_SESSION['user_role'] == 'admin') {
+
+
+
+            $the_user_id = mysqli_real_escape_string($connection,  escape($_GET['delete']));
+            $query = "DELETE FROM users WHERE user_id = {$the_user_id}";
+            $delete_user_query = mysqli_query($connection, $query);
+            header("Location: users.php");
         }
-        header("Location: users.php");
-        exit;
-    } else {
-        header("Location: index.php");
-        exit;
     }
 }
+
+
+
 ?>
