@@ -35,28 +35,29 @@
             $find_count = mysqli_query($connection, $post_query_count);
             $count = mysqli_num_rows($find_count);
 
-            $count = ceil($count / $per_page);
+            if ($count < 1) {
+                echo "<h1 class='text-center'>No Post available </h1>";
+            } else {
+
+
+                $count = ceil($count / $per_page);
 
 
 
 
-            $query = "SELECT * FROM posts LIMIT $page_1, $per_page  ";
+                $query = "SELECT * FROM posts LIMIT $page_1, $per_page  ";
 
-            $select_all_posts_query = mysqli_query($connection, $query);
+                $select_all_posts_query = mysqli_query($connection, $query);
 
-            while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
-                $post_id = $row['post_id'];
-                $post_title = $row['post_title'];
-                $post_author = $row['post_user'];
-                $post_date = $row['post_date'];
-                $post_image = $row['post_image'];
-                $post_content = substr($row['post_content'], 0, 100);
+                while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
+                    $post_id = $row['post_id'];
+                    $post_title = $row['post_title'];
+                    $post_author = $row['post_user'];
+                    $post_date = $row['post_date'];
+                    $post_image = $row['post_image'];
+                    $post_content = substr($row['post_content'], 0, 100);
 
-                $post_status = $row['post_status'];
-
-                if ($post_status !== 'draft') {
-
-
+                    $post_status = $row['post_status'];
             ?>
                     <h1><?php echo $count; ?></h1>
                     <h1 class="page-header">
