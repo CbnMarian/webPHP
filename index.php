@@ -31,7 +31,7 @@
                 $page_1 = ($page * $per_page) - $per_page;
             }
 
-            $post_query_count = "SELECT * FROM posts";
+            $post_query_count = "SELECT * FROM posts WHERE post_status = 'published'";
             $find_count = mysqli_query($connection, $post_query_count);
             $count = mysqli_num_rows($find_count);
 
@@ -54,7 +54,7 @@
 
                 $post_status = $row['post_status'];
 
-                if ($post_status !== 'published') {
+                if ($post_status !== 'draft') {
 
 
             ?>
