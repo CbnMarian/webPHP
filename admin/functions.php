@@ -103,3 +103,33 @@ function users_online()
     } // get request isset()
 }
 users_online();
+
+
+
+function recordCount($table)
+{
+    global $connection;
+    $query = "SELECT * FROM " . $table; // Removed the extra space after FROM
+    $select_all_post = mysqli_query($connection, $query);
+
+    $result = mysqli_num_rows($select_all_post);
+    confirm($result);
+    return $result;
+}
+
+
+function checkStatus($table, $column, $status)
+{
+    global $connection;
+    $query = "SELECT * FROM $table WHERE $column = '$status'";
+    $result = mysqli_query($connection, $query);
+    return mysqli_num_rows($result);
+}
+
+function checkUserRole($table, $column, $role)
+{
+    global $connection;
+    $query = "SELECT * FROM $table WHERE $column = '$role'";
+    $result = mysqli_query($connection, $query);
+    return mysqli_num_rows($result);
+}
