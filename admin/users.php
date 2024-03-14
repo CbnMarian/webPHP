@@ -1,5 +1,19 @@
 <?php include 'includes/admin_header.php' ?>
 
+<?php
+
+if (!isset($_SESSION['user_role'])) {
+    header("Location: ../index.php");
+    die;
+} else {
+    if ($_SESSION['user_role'] == 'subscriber') {
+        header("Location: ../index.php");
+        die;
+    }
+}
+
+
+?>
 
 
 
@@ -54,16 +68,7 @@
 
                             break;
                     }
-
-
-
-
-
-
-
-
                     ?>
-
                 </div>
             </div>
             <!-- /.row -->

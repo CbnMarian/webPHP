@@ -96,6 +96,7 @@ if (isset($_POST['checkBoxArray'])) {
         <tbody>
             <?php
             global $connection;
+            // $query = "SELECT * FROM posts ORDER BY post_id DESC";
             $query = "SELECT * FROM posts ORDER BY post_id DESC";
             $select_posts = mysqli_query($connection, $query);
 
