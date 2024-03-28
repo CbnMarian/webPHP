@@ -103,6 +103,9 @@
             ?>
         </div>
 
+
+
+
         <!-- Blog Sidebar Widgets Column -->
 
         <?php include "./includes/sidebar.php" ?>
@@ -111,6 +114,8 @@
     <!-- /.row -->
 
     <hr>
+
+
 
     <ul class="pager">
 
