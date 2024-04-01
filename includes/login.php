@@ -1,7 +1,7 @@
 <?php
-include "includes/db.php";
-include "includes/header.php";
-include "admin/functions.php";
+include "db.php";
+include "header.php";
+include "../admin/functions.php";
 
 if (isset($_POST['login'])) {
     $username = trim($_POST['username']);
